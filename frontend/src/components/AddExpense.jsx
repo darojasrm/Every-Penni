@@ -32,6 +32,7 @@ export default function AddExpense({ onExpenseAdded }) {
     };
 
     const data = await createExpense(newExpense, token);
+    console.log("CREATE EXPENSE RESPONSE:", data);
 
     if (data.id) {
       // clear form

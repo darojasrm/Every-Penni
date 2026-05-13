@@ -27,6 +27,7 @@ export default function Dashboard() {
         const data = await getExpenses(token, {
           category_id: categoryOverride || undefined,
         });
+        console.log("FETCHED EXPENSES:", data);
 
         setExpenses(Array.isArray(data) ? data : []);
       } catch (err) {
@@ -104,7 +105,12 @@ export default function Dashboard() {
         />
 
         <div className="bg-white rounded-xl shadow p-5 mb-6">
-          <AddExpense onExpenseAdded={() => refreshExpenses()} />
+          <AddExpense
+            onExpenseAdded={() => {
+              setSelectedCategory("");
+              refreshExpenses("");
+            }}
+          />
         </div>
 
         <div className="space-y-4">
