@@ -12,18 +12,19 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://every-penni.vercel.app/",
+  "https://every-penni.vercel.app",
 ];
 
 // MIDDLEWARE
 app.use(
   cors({
     origin: (origin, callback) => {
+      console.log("Request origin:", origin);
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error(`Not allowed by CORS: ${origin}`));
     },
     credentials: true,
   }),
