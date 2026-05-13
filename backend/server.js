@@ -10,14 +10,14 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
+/* const allowedOrigins = [
   "http://localhost:5173",
   "https://every-penni-git-main-daniel-alberto-rojas-barcos-projects.vercel.app/",
   "https://every-penni.vercel.app/",
-];
-
+]
+ */
 // MIDDLEWARE
-app.use(
+/* app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
@@ -28,7 +28,14 @@ app.use(
     },
     credentials: true,
   }),
+); */
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
 );
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
