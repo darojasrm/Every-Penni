@@ -14,8 +14,15 @@ export default function AddExpense({ onExpenseAdded }) {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const data = await getCategories();
-      setCategories(data);
+      try {
+        const data = await getCategories();
+
+        console.log("ADD EXPENSE CATEGORIES:", data);
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Error loading categories in AddExpense:", err);
+        setCategories([]);
+      }
     };
 
     fetchCategories();
@@ -39,11 +46,12 @@ export default function AddExpense({ onExpenseAdded }) {
       setAmount("");
       setDescription("");
       setExpenseDate("");
+      setCategoryId("");
 
       // notify parent to refresh list
       onExpenseAdded();
     } else {
-      alert("Error creating expense");
+      alert(data.error || "Error creating expense");
     }
   };
 

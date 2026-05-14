@@ -106,6 +106,7 @@ export default function Dashboard() {
 
         <div className="bg-white rounded-xl shadow p-5 mb-6">
           <AddExpense
+            //categories={categories}
             onExpenseAdded={() => {
               setSelectedCategory("");
               refreshExpenses("");
