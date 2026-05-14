@@ -64,7 +64,7 @@ export const createExpense = async (data, token) => {
 };
 
 export const updateExpense = async (id, data, token) => {
-  const res = await fetch(`http://localhost:3000/expenses/${id}`, {
+  const res = await fetch(`${API_URL}/expenses/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export const updateExpense = async (id, data, token) => {
 };
 
 export const deleteExpense = async (id, token) => {
-  const res = await fetch(`http://localhost:3000/expenses/${id}`, {
+  const res = await fetch(`${API_URL}/expenses/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -87,6 +87,6 @@ export const deleteExpense = async (id, token) => {
 
 // src/api/api.js
 export const getCategories = async () => {
-  const res = await fetch("http://localhost:3000/categories");
+  const res = await fetch(`${API_URL}/categories`);
   return res.json();
 };
